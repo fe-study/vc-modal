@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <link rel="stylesheet" href="./static/css/bootstrap.min.css">
+	<title>example</title>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+            box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+            background: rgba(119, 129, 149, 0.8);
+        }
+        #app {
+            text-align: center;
+        }
+        .container {
+            width: 400px;
+            padding: 20px;
+        }
+        .container label {
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+    <h1 align="center">@Vue Component - vc-modal</h1>
+
+	<div id="app">
+
+        <vc-modal
+            :show.sync="show"
+            :small="small"
+            :title="title"
+            :effect="effect"
+            :show-close-btn="showCloseBtn"
+            :show-header="showHeader"
+            :show-footer="showFooter"
+            :width="width"
+            :ok-text="okText"
+            :no-text="noText"
+        >
+            <!--<div class="modal-header" slot="modal-header">-->
+            <!--    content of header -->
+            <!--</div>-->
+            <div class="modal-body" slot="modal-body">
+                content
+            </div>
+            <!--<div class="modal-footer" slot="modal-footer">-->
+            <!--    content of footer -->
+            <!--</div>-->
+        </vc-modal>
+
+        <button class="btn btn-primary" @click="showLargeModal">show large modal</button>
+        <button class="btn btn-danger" @click="showSmallModal">show small modal</button>
+        <button class="btn btn-info" @click="showZoomModal">show zoom modal</button>
+        <button class="btn btn-warn" @click="showFadeModal">show fade modal</button>
+
+        <hr>
+
+        <button class="btn btn-primary" @click="showModal">show modal with props before</button>
+
+        <div class="container">
+
+            <div class="form-group radio">
+                <div>是否显示模态框</div>
+                <label><input type="radio" :value="bools.true" name="show" v-model="show"> 显示</label>
+                <label><input type="radio" :value="bools.false" name="show" v-model="show"> 不显示</label>
+            </div>
+
+            <div class="form-group">
+                <div>配置组件标题: title</div>
+                <input type="text" class="form-control" placeholder="title" v-model="title">
+            </div>
+
+            <div class="form-group">
+                <div>配置组件确认文案: okText</div>
+                <input type="text" class="form-control" placeholder="okText" v-model="okText">
+            </div>
+
+            <div class="form-group">
+                <div>配置组件取消文案: noText</div>
+                <input type="text" class="form-control" placeholder="noText" v-model="noText">
+            </div>
+
+            <div class="form-group">
+                <div>配置组件的width</div>
+                <input type="text" class="form-control" placeholder="width" v-model="width">
+            </div>
+
+            <div class="form-group">
+                <div>配置组件效果: effect</div>
+                <label><input type="radio" value="fade" name="effect" v-model="effect">fade</label>
+                <label><input type="radio" value="zoom" name="effect" v-model="effect">zoom</label>
+            </div>
+
+            <div class="form-group radio">
+                <div>是否是小尺寸</div>
+                <label><input type="radio" :value="bools.true" name="small" v-model="small"> 是</label>
+                <label><input type="radio" :value="bools.false" name="large" v-model="small"> 否</label>
+            </div>
+
+            <div class="form-group radio">
+                <div>是否显示关闭按钮</div>
+                <label><input type="radio" :value="bools.true" name="showCloseBtn" v-model="showCloseBtn"> 显示</label>
+                <label><input type="radio" :value="bools.false" name="showCloseBtn" v-model="showCloseBtn"> 不显示</label>
+            </div>
+
+            <div class="form-group radio">
+                <div>是否显示: modal-header</div>
+                <label><input type="radio" :value="bools.true" name="showHeader" v-model="showHeader"> 显示</label>
+                <label><input type="radio" :value="bools.false" name="showHeader" v-model="showHeader"> 不显示</label>
+            </div>
+
+            <div class="form-group radio">
+                <div>是否显示: modal-footer</div>
+                <label><input type="radio" :value="bools.true" name="showFooter" v-model="showFooter"> 显示</label>
+                <label><input type="radio" :value="bools.false" name="showFooter" v-model="showFooter"> 不显示</label>
+            </div>
+        </div>
+
+	</div>
+	<script src='../dist/example.js'></script>
+</body>
+</html>
