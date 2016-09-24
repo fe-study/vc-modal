@@ -1,7 +1,7 @@
 {
   "author": "indexxuan@gmail.com",
   "name": "vc-modal",
-  "version": "0.0.2",
+  "version": "0.2.0",
   "description": "bootstrap modal component based on vue.js",
   "scripts": {
     "start": "webpack-dev-server --inline --hot --quiet",
@@ -22,10 +22,11 @@
   "bugs": {
       "url": "https://github.com/iwaimai-bi-fe/vc-modal/issues"
   },
+  "keywords": ["modal", "component", "vue", "bootstrap"],
   "dependencies": {
+    "bootstrap": "^3.3.5",
     "vue": "^1.0.24"
   },
-  "keywords": ["modal", "component", "vue", "bootstrap"],
   "devDependencies": {
     "babel-core": "^6.1.21",
     "babel-loader": "^6.1.0",
@@ -44,9 +45,10 @@
     "webpack-dev-server": "^1.12.0"
   },
   "files": [
-      "dist/build.js",
-      "dist/build.js.map",
-      "dist/build.min.js"
+    "src",
+    "dist/build.js",
+    "dist/build.js.map",
+    "dist/build.min.js"
   ],
   "license": "MIT"
 }

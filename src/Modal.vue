@@ -1,17 +1,19 @@
 <template>
     <div role="dialog"
         :class="{
-        'modal': true,
-        'fade': effect === 'fade',
-        'zoom': effect === 'zoom'
+            'vc-modal-component': true,
+            'modal': true,
+            'fade': effect === 'fade',
+            'zoom': effect === 'zoom'
         }"
     >
-        <div :class="{ 'modal-dialog':true,'modal-lg':large,'modal-sm':small }" 
-            :style="{width: optionalWidth}"
+        <div v-el:modal :class="{ 'modal-dialog': true, 'modal-lg': large, 'modal-sm': small }" 
+            :style="{ 'width': optionalWidth, 'top': optionalTop }"
             role="document"
         >
             <button type="button" class="close" v-show="showCloseBtn" @click="onClose"><span>&times;</span></button>
-            <div class="modal-content">
+            <slot>
+            <div v-el:content class="modal-content">
                 <slot name="modal-header" v-if="showHeader">
                     <div class="modal-header">
                         <h4 class="modal-title" > 
@@ -26,20 +28,27 @@
                 </slot>
                 <slot name="modal-footer" v-if="showFooter">
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" @click="onConfirm">{{ okText }}</button>
-                        <button type="button" class="btn btn-default" @click="onClose">{{ noText }}</button>
+                        <button type="button" class="btn btn-primary" @click="onOk">{{ okText }}</button>
+                        <button type="button" class="btn btn-default" @click="onClose">{{ cancelText }}</button>
                     </div>
                 </slot>
             </div>
+            </slot>
         </div>
     </div>
 </template>
 
-<style>
+<style lang="less">
+.vc-modal-component {
+
+}
 .modal {
     transition: all 0.3s ease;
     text-align: center;
     display: none; /* 初始化之前隐藏 */
+}
+.modal-dialog {
+    margin: 30px auto;
 }
 .modal-footer {
     text-align: center; /* override bootstrap */
@@ -84,13 +93,16 @@ button.close {
 
 <script>
 // polyfill
-Number.isInteger = Number.isInteger || function(value) {
-  return typeof value === "number" && 
-    isFinite(value) && 
-    Math.floor(value) === value
-}
+// Number.isInteger = Number.isInteger || function(value) {
+//   return typeof value === "number" && 
+//     isFinite(value) && 
+//     Math.floor(value) === value
+// }
+
+const DEFAULT_TOP = '30px'
 
 export default {
+    name: 'vc-modal',
     props: {
         show: {
             require: true,
@@ -105,6 +117,10 @@ export default {
             type: Boolean,
             default: true
         },
+        maskCloseable: {
+            type: Boolean,
+            default: true
+        },
         showHeader: {
             type: Boolean,
             default: true
@@ -116,21 +132,26 @@ export default {
         width: {
             default: null
         },
+        top: {
+            default: null
+        },
+        center: {
+            type: Boolean,
+            default: false
+        },
         okText: {
             type: String,
             default: '确定'
         },
-        noText: {
+        cancelText: {
             type: String,
             default: '取消'
         },
-        onConfirm: {
-            type: Function,
-            default: function() {}
-        },
+        onOk: Function,
+        onCancel: Function,
         effect: {
             type: String,
-            default: null
+            default: 'fade' 
         },
         backdrop: {
             type: Boolean,
@@ -150,27 +171,37 @@ export default {
             var el = this.$el
             var body = document.body
             if (val) {
-                el.querySelector('.modal-content').focus()
+                let defaultContent = this.$els.content
+                // 可能会因为用户传入的slot导致没有
+                defaultContent && defaultContent.focus()
                 el.style.display = 'block'
-                setTimeout(() => { el.classList.add('in') }, 0)
+                setTimeout(() => { 
+                    if (this.cCenter) {
+                        let fullHeight = document.documentElement.clientHeight || document.body.clientHeight
+                        let modalHeight = this.$els.modal.offsetHeight
+                        this.top = (fullHeight - modalHeight) / 2
+                    }
+                    el.classList.add('in') 
+                }, 0)
                 body.classList.add('modal-open')
                 const scrollbarWidth = this.getScrollbarWidth()
                 if (scrollbarWidth) {
                     body.style.paddingRight = scrollbarWidth + 'px'
                 }
-                if (this.backdrop) {
+                if (this.backdrop && this.maskCloseable) {
                     el.addEventListener('click', this.modalBlurHandler, false)
                 }
             } else {
                 if (el.classList.contains('in')) {
                     el.classList.remove('in')
+                    this.top = null
                     el.addEventListener('transitionend', this.transitionEndHandler, false)
                 }
             }
         }, { immediate: true });
     },
     computed: {
-        optionalWidth: function () {
+        optionalWidth () {
             if (this.width == null || this.width === '') {
                 return null
             }
@@ -178,6 +209,25 @@ export default {
                 return this.width + 'px'
             }
             return this.width
+        },
+        optionalTop () {
+            if (this.top == null || this.top === '') {
+                this.$els.modal.style.margin = '30px auto'
+                return null
+            }
+            // top不为空的时候要清除margin，来真正利用top定位
+            this.$els.modal.style.margin = '0 auto'
+            if (!isNaN(this.top)) {
+                return this.top + 'px'
+            }
+            return this.top
+        },
+        cCenter () {
+            if (this.center === false) {
+                return false
+            }
+            this.top = null
+            return true
         }
     },
     // watch: {
@@ -193,7 +243,7 @@ export default {
     //             if (scrollbarWidth) {
     //                 body.style.paddingRight = scrollbarWidth + 'px'
     //             }
-    //             if (this.backdrop) {
+    //             if (this.backdrop && this.maskCloseable) {
     //                 el.addEventListener('click', this.modalBlurHandler, false)
     //             }
     //         } else {
@@ -248,11 +298,12 @@ export default {
             body.classList.remove('modal-open')
             body.style.paddingRight = '0'
         },
-        onClose: function() {
+        onClose () {
             this.show = false;
+            this.onOk && this.onOk()
         }
     },
-    beforeDestroy: function() {
+    beforeDestroy () {
         if (el.classList.contains('in')) {
             el.classList.remove('in')
             el.addEventListener('transitionend', this.transitionEndHandler, false)

@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["VueComponentsName"] = factory();
+		exports["vcModal"] = factory();
 	else
-		root["VueComponentsName"] = factory();
+		root["vcModal"] = factory();
 })(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -134,12 +134,12 @@ if (false) {
 var hotAPI = require("vue-hot-reload-api")
 hotAPI.install(require("vue"))
 if (!hotAPI.compatible) return
-var id = "-!babel!./../../../node_modules/.7.1.7@vue-loader/lib/selector.js?type=script&index=0!./Modal.vue"
+var id = "-!babel!./../../node_modules/.7.1.7@vue-loader/lib/selector.js?type=script&index=0!./Modal.vue"
 hotAPI.createRecord(id, module.exports)
-module.hot.accept(["-!babel!./../../../node_modules/.7.1.7@vue-loader/lib/selector.js?type=script&index=0!./Modal.vue","-!vue-html-loader!./../../../node_modules/.7.1.7@vue-loader/lib/selector.js?type=template&index=0!./Modal.vue"], function () {
-var newOptions = require("-!babel!./../../../node_modules/.7.1.7@vue-loader/lib/selector.js?type=script&index=0!./Modal.vue")
+module.hot.accept(["-!babel!./../../node_modules/.7.1.7@vue-loader/lib/selector.js?type=script&index=0!./Modal.vue","-!vue-html-loader!./../../node_modules/.7.1.7@vue-loader/lib/selector.js?type=template&index=0!./Modal.vue"], function () {
+var newOptions = require("-!babel!./../../node_modules/.7.1.7@vue-loader/lib/selector.js?type=script&index=0!./Modal.vue")
 if (newOptions && newOptions.__esModule) newOptions = newOptions.default
-var newTemplate = require("-!vue-html-loader!./../../../node_modules/.7.1.7@vue-loader/lib/selector.js?type=template&index=0!./Modal.vue")
+var newTemplate = require("-!vue-html-loader!./../../node_modules/.7.1.7@vue-loader/lib/selector.js?type=template&index=0!./Modal.vue")
 hotAPI.update(id, newOptions, newTemplate)
 })
 })()
@@ -413,8 +413,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!./../../../node_modules/.0.21.0@css-loader/index.js!./../../../node_modules/.7.1.7@vue-loader/lib/style-rewriter.js?id=_v-6fd701c3&file=Modal.vue!./../../../node_modules/.2.2.3@less-loader/index.js!./../../../node_modules/.7.1.7@vue-loader/lib/selector.js?type=style&index=0!./Modal.vue", function() {
-			var newContent = require("!!./../../../node_modules/.0.21.0@css-loader/index.js!./../../../node_modules/.7.1.7@vue-loader/lib/style-rewriter.js?id=_v-6fd701c3&file=Modal.vue!./../../../node_modules/.2.2.3@less-loader/index.js!./../../../node_modules/.7.1.7@vue-loader/lib/selector.js?type=style&index=0!./Modal.vue");
+		module.hot.accept("!!./../../node_modules/.0.21.0@css-loader/index.js!./../../node_modules/.7.1.7@vue-loader/lib/style-rewriter.js?id=_v-b6f270f4&file=Modal.vue!./../../node_modules/.2.2.3@less-loader/index.js!./../../node_modules/.7.1.7@vue-loader/lib/selector.js?type=style&index=0!./Modal.vue", function() {
+			var newContent = require("!!./../../node_modules/.0.21.0@css-loader/index.js!./../../node_modules/.7.1.7@vue-loader/lib/style-rewriter.js?id=_v-b6f270f4&file=Modal.vue!./../../node_modules/.2.2.3@less-loader/index.js!./../../node_modules/.7.1.7@vue-loader/lib/selector.js?type=style&index=0!./Modal.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -432,7 +432,7 @@ exports = module.exports = __webpack_require__(10)();
 
 
 // module
-exports.push([module.i, ".modal {\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  text-align: center;\n  display: none;\n  /* 初始化之前隐藏 */\n}\n.modal-footer {\n  text-align: center;\n  /* override bootstrap */\n}\n.modal.in {\n  background-color: rgba(0, 0, 0, 0.5);\n}\n.modal.zoom .modal-dialog {\n  -webkit-transform: scale(0.1);\n  transform: scale(0.1);\n  top: 300px;\n  opacity: 0;\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.modal.zoom.in .modal-dialog {\n  -webkit-transform: scale(1);\n  transform: scale(1);\n  -webkit-transform: translate3d(0, -300px, 0);\n  transform: translate3d(0, -300px, 0);\n  opacity: 1;\n}\n.modal-content {\n  padding: 30px;\n}\n/* 独立的close按钮 */\nbutton.close {\n  position: relative;\n  right: 10px;\n  top: 5px;\n  z-index: 2;\n  outline: none;\n}\n", ""]);
+exports.push([module.i, ".modal {\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  text-align: center;\n  display: none;\n  /* 初始化之前隐藏 */\n}\n.modal-dialog {\n  margin: 30px auto;\n}\n.modal-footer {\n  text-align: center;\n  /* override bootstrap */\n}\n.modal.in {\n  background-color: rgba(0, 0, 0, 0.5);\n}\n.modal.zoom .modal-dialog {\n  -webkit-transform: scale(0.1);\n  transform: scale(0.1);\n  top: 300px;\n  opacity: 0;\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.modal.zoom.in .modal-dialog {\n  -webkit-transform: scale(1);\n  transform: scale(1);\n  -webkit-transform: translate3d(0, -300px, 0);\n  transform: translate3d(0, -300px, 0);\n  opacity: 1;\n}\n.modal-content {\n  padding: 30px;\n}\n/* 独立的close按钮 */\nbutton.close {\n  position: relative;\n  right: 10px;\n  top: 5px;\n  z-index: 2;\n  outline: none;\n}\n", ""]);
 
 // exports
 
@@ -497,7 +497,7 @@ module.exports = function() {
 /* 11 */
 /***/ function(module, exports) {
 
-module.exports = "<div role=\"dialog\"\n        :class=\"{\n        'modal': true,\n        'fade': effect === 'fade',\n        'zoom': effect === 'zoom'\n        }\"\n    >\n        <div :class=\"{ 'modal-dialog':true,'modal-lg':large,'modal-sm':small }\" \n            :style=\"{width: optionalWidth}\"\n            role=\"document\"\n        >\n            <button type=\"button\" class=\"close\" v-show=\"showCloseBtn\" @click=\"onClose\"><span>&times;</span></button>\n            <div class=\"modal-content\">\n                <slot name=\"modal-header\" v-if=\"showHeader\">\n                    <div class=\"modal-header\">\n                        <h4 class=\"modal-title\" > \n                            <div name=\"ttle\">\n                                {{title}}\n                            </div>\n                        </h4>\n                    </div>\n                </slot>\n                <slot name=\"modal-body\">\n                    <div class=\"modal-body\"></div>\n                </slot>\n                <slot name=\"modal-footer\" v-if=\"showFooter\">\n                    <div class=\"modal-footer\">\n                        <button type=\"button\" class=\"btn btn-primary\" @click=\"onConfirm\">{{ okText }}</button>\n                        <button type=\"button\" class=\"btn btn-default\" @click=\"onClose\">{{ noText }}</button>\n                    </div>\n                </slot>\n            </div>\n        </div>\n    </div>";
+module.exports = "<div role=\"dialog\"\n        :class=\"{\n            'vc-modal-component': true,\n            'modal': true,\n            'fade': effect === 'fade',\n            'zoom': effect === 'zoom'\n        }\"\n    >\n        <div v-el:modal :class=\"{ 'modal-dialog': true, 'modal-lg': large, 'modal-sm': small }\" \n            :style=\"{ 'width': optionalWidth, 'top': optionalTop }\"\n            role=\"document\"\n        >\n            <button type=\"button\" class=\"close\" v-show=\"showCloseBtn\" @click=\"onClose\"><span>&times;</span></button>\n            <slot>\n            <div v-el:content class=\"modal-content\">\n                <slot name=\"modal-header\" v-if=\"showHeader\">\n                    <div class=\"modal-header\">\n                        <h4 class=\"modal-title\" > \n                            <div name=\"ttle\">\n                                {{title}}\n                            </div>\n                        </h4>\n                    </div>\n                </slot>\n                <slot name=\"modal-body\">\n                    <div class=\"modal-body\"></div>\n                </slot>\n                <slot name=\"modal-footer\" v-if=\"showFooter\">\n                    <div class=\"modal-footer\">\n                        <button type=\"button\" class=\"btn btn-primary\" @click=\"onOk\">{{ okText }}</button>\n                        <button type=\"button\" class=\"btn btn-default\" @click=\"onClose\">{{ cancelText }}</button>\n                    </div>\n                </slot>\n            </div>\n            </slot>\n        </div>\n    </div>";
 
 /***/ },
 /* 12 */
@@ -746,17 +746,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // <template>
 //     <div role="dialog"
 //         :class="{
-//         'modal': true,
-//         'fade': effect === 'fade',
-//         'zoom': effect === 'zoom'
+//             'vc-modal-component': true,
+//             'modal': true,
+//             'fade': effect === 'fade',
+//             'zoom': effect === 'zoom'
 //         }"
 //     >
-//         <div :class="{ 'modal-dialog':true,'modal-lg':large,'modal-sm':small }" 
-//             :style="{width: optionalWidth}"
+//         <div v-el:modal :class="{ 'modal-dialog': true, 'modal-lg': large, 'modal-sm': small }" 
+//             :style="{ 'width': optionalWidth, 'top': optionalTop }"
 //             role="document"
 //         >
 //             <button type="button" class="close" v-show="showCloseBtn" @click="onClose"><span>&times;</span></button>
-//             <div class="modal-content">
+//             <slot>
+//             <div v-el:content class="modal-content">
 //                 <slot name="modal-header" v-if="showHeader">
 //                     <div class="modal-header">
 //                         <h4 class="modal-title" > 
@@ -771,20 +773,27 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //                 </slot>
 //                 <slot name="modal-footer" v-if="showFooter">
 //                     <div class="modal-footer">
-//                         <button type="button" class="btn btn-primary" @click="onConfirm">{{ okText }}</button>
-//                         <button type="button" class="btn btn-default" @click="onClose">{{ noText }}</button>
+//                         <button type="button" class="btn btn-primary" @click="onOk">{{ okText }}</button>
+//                         <button type="button" class="btn btn-default" @click="onClose">{{ cancelText }}</button>
 //                     </div>
 //                 </slot>
 //             </div>
+//             </slot>
 //         </div>
 //     </div>
 // </template>
 
-// <style>
+// <style lang="less">
+// .vc-modal-component {
+
+// }
 // .modal {
 //     transition: all 0.3s ease;
 //     text-align: center;
 //     display: none; /* 初始化之前隐藏 */
+// }
+// .modal-dialog {
+//     margin: 30px auto;
 // }
 // .modal-footer {
 //     text-align: center; /* override bootstrap */
@@ -829,11 +838,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // <script>
 // polyfill
-Number.isInteger = _isInteger2.default || function (value) {
-    return typeof value === "number" && isFinite(value) && Math.floor(value) === value;
-};
+// Number.isInteger = Number.isInteger || function(value) {
+//   return typeof value === "number" && 
+//     isFinite(value) && 
+//     Math.floor(value) === value
+// }
+
+var DEFAULT_TOP = '30px';
 
 exports.default = {
+    name: 'vc-modal',
     props: {
         show: {
             require: true,
@@ -848,6 +862,10 @@ exports.default = {
             type: Boolean,
             default: true
         },
+        maskCloseable: {
+            type: Boolean,
+            default: true
+        },
         showHeader: {
             type: Boolean,
             default: true
@@ -859,21 +877,26 @@ exports.default = {
         width: {
             default: null
         },
+        top: {
+            default: null
+        },
+        center: {
+            type: Boolean,
+            default: false
+        },
         okText: {
             type: String,
             default: '确定'
         },
-        noText: {
+        cancelText: {
             type: String,
             default: '取消'
         },
-        onConfirm: {
-            type: Function,
-            default: function _default() {}
-        },
+        onOk: Function,
+        onCancel: Function,
         effect: {
             type: String,
-            default: null
+            default: 'fade'
         },
         backdrop: {
             type: Boolean,
@@ -895,9 +918,16 @@ exports.default = {
             var el = _this.$el;
             var body = document.body;
             if (val) {
-                el.querySelector('.modal-content').focus();
+                var defaultContent = _this.$els.content;
+                // 可能会因为用户传入的slot导致没有
+                defaultContent && defaultContent.focus();
                 el.style.display = 'block';
                 setTimeout(function () {
+                    if (_this.cCenter) {
+                        var fullHeight = document.documentElement.clientHeight || document.body.clientHeight;
+                        var modalHeight = _this.$els.modal.offsetHeight;
+                        _this.top = (fullHeight - modalHeight) / 2;
+                    }
                     el.classList.add('in');
                 }, 0);
                 body.classList.add('modal-open');
@@ -905,12 +935,13 @@ exports.default = {
                 if (scrollbarWidth) {
                     body.style.paddingRight = scrollbarWidth + 'px';
                 }
-                if (_this.backdrop) {
+                if (_this.backdrop && _this.maskCloseable) {
                     el.addEventListener('click', _this.modalBlurHandler, false);
                 }
             } else {
                 if (el.classList.contains('in')) {
                     el.classList.remove('in');
+                    _this.top = null;
                     el.addEventListener('transitionend', _this.transitionEndHandler, false);
                 }
             }
@@ -926,6 +957,25 @@ exports.default = {
                 return this.width + 'px';
             }
             return this.width;
+        },
+        optionalTop: function optionalTop() {
+            if (this.top == null || this.top === '') {
+                this.$els.modal.style.margin = '30px auto';
+                return null;
+            }
+            // top不为空的时候要清除margin，来真正利用top定位
+            this.$els.modal.style.margin = '0 auto';
+            if (!isNaN(this.top)) {
+                return this.top + 'px';
+            }
+            return this.top;
+        },
+        cCenter: function cCenter() {
+            if (this.center === false) {
+                return false;
+            }
+            this.top = null;
+            return true;
         }
     },
     // watch: {
@@ -941,7 +991,7 @@ exports.default = {
     //             if (scrollbarWidth) {
     //                 body.style.paddingRight = scrollbarWidth + 'px'
     //             }
-    //             if (this.backdrop) {
+    //             if (this.backdrop && this.maskCloseable) {
     //                 el.addEventListener('click', this.modalBlurHandler, false)
     //             }
     //         } else {
@@ -996,9 +1046,9 @@ exports.default = {
             body.classList.remove('modal-open');
             body.style.paddingRight = '0';
         },
-
         onClose: function onClose() {
             this.show = false;
+            this.onOk && this.onOk();
         }
     },
     beforeDestroy: function beforeDestroy() {

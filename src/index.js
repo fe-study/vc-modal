@@ -1,3 +1,4 @@
-import vcModal from './components/Modal'
+import vcModal from './Modal'
 
-module.exports = vcModal
+export default vcModal
+export { vcModal }

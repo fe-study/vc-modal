@@ -36,12 +36,17 @@
             :small="small"
             :title="title"
             :effect="effect"
+            :center="center"
             :show-close-btn="showCloseBtn"
+            :mask-closeable="maskCloseable"
             :show-header="showHeader"
             :show-footer="showFooter"
             :width="width"
+            :top="top"
             :ok-text="okText"
-            :no-text="noText"
+            :cancel-text="cancelText"
+            :on-ok="onOk"
+            :on-cancel="onCancel"
         >
             <!--<div class="modal-header" slot="modal-header">-->
             <!--    content of header -->
@@ -71,6 +76,12 @@
                 <label><input type="radio" :value="bools.false" name="show" v-model="show"> 不显示</label>
             </div>
 
+            <div class="form-group radio">
+                <div>是否居中显示模态框,如果是，top的设置将失效</div>
+                <label><input type="radio" :value="bools.true" name="center" v-model="center"> 居中</label>
+                <label><input type="radio" :value="bools.false" name="center" v-model="center"> 默认</label>
+            </div>
+
             <div class="form-group">
                 <div>配置组件标题: title</div>
                 <input type="text" class="form-control" placeholder="title" v-model="title">
@@ -82,8 +93,13 @@
             </div>
 
             <div class="form-group">
-                <div>配置组件取消文案: noText</div>
-                <input type="text" class="form-control" placeholder="noText" v-model="noText">
+                <div>配置组件取消文案: cancelText</div>
+                <input type="text" class="form-control" placeholder="cancelText" v-model="cancelText">
+            </div>
+
+            <div class="form-group">
+                <div>配置组件的top</div>
+                <input type="text" class="form-control" placeholder="top" v-model="top">
             </div>
 
             <div class="form-group">
@@ -107,6 +123,12 @@
                 <div>是否显示关闭按钮</div>
                 <label><input type="radio" :value="bools.true" name="showCloseBtn" v-model="showCloseBtn"> 显示</label>
                 <label><input type="radio" :value="bools.false" name="showCloseBtn" v-model="showCloseBtn"> 不显示</label>
+            </div>
+
+            <div class="form-group radio">
+                <div>点击遮罩是否能关闭模态框</div>
+                <label><input type="radio" :value="bools.true" name="maskCloseable" v-model="maskCloseable"> 能</label>
+                <label><input type="radio" :value="bools.false" name="maskCloseable" v-model="maskCloseable"> 不能</label>
             </div>
 
             <div class="form-group radio">

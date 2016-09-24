@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import vcModal from '../dist/build.js'
+import vcModal from '../src'
 
 new Vue({
 	el: '#app',
@@ -11,6 +11,7 @@ new Vue({
             },
             title: 'title',
             show: true,
+            center: false,
             small: false,
             large: true,
             showCloseBtn: true,
@@ -18,13 +19,21 @@ new Vue({
             showFooter: true,
             effect: 'fade',
             width: '',
+            top: '',
             okText: '确认',
-            noText: '取消'
+            cancelText: '取消',
+            maskCloseable: true
 		}
 	},
     methods: {
         showModal () {
             this.show = true
+        },
+        onOk () {
+            console.log('ok')
+        },
+        onCancel () {
+            console.log('cancel')
         },
         showSmallModal () {
             this.show = true
@@ -45,6 +54,13 @@ new Vue({
         showZoomModal () {
             this.show = true
             this.effect = 'zoom'
+        }
+    },
+    watch: {
+        center (val) {
+            if (val) {
+                this.top = null
+            }
         }
     },
 	components: {
