@@ -10675,7 +10675,7 @@ exports = module.exports = __webpack_require__(12)();
 
 
 // module
-exports.push([module.i, ".modal {\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  text-align: center;\n  display: none;\n  /* 初始化之前隐藏 */\n}\n.modal-dialog {\n  margin: 30px auto;\n}\n.modal-footer {\n  text-align: center;\n  /* override bootstrap */\n}\n.modal.in {\n  background-color: rgba(0, 0, 0, 0.5);\n}\n.modal.zoom .modal-dialog {\n  -webkit-transform: scale(0.1);\n  transform: scale(0.1);\n  top: 300px;\n  opacity: 0;\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.modal.zoom.in .modal-dialog {\n  -webkit-transform: scale(1);\n  transform: scale(1);\n  -webkit-transform: translate3d(0, -300px, 0);\n  transform: translate3d(0, -300px, 0);\n  opacity: 1;\n}\n.modal-content {\n  padding: 30px;\n}\n/* 独立的close按钮 */\nbutton.close {\n  position: relative;\n  right: 10px;\n  top: 5px;\n  z-index: 2;\n  outline: none;\n}\n", ""]);
+exports.push([module.i, ".modal {\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  text-align: center;\n  display: none;\n  /* 初始化之前隐藏 */\n}\n.modal.no-backdrop {\n  background-color: inherit!important;\n}\n.modal-dialog {\n  margin: 30px auto;\n}\n.modal-footer {\n  text-align: center;\n  /* override bootstrap */\n}\n.modal.in {\n  background-color: rgba(0, 0, 0, 0.5);\n}\n.modal.zoom .modal-dialog {\n  -webkit-transform: scale(0.1);\n  transform: scale(0.1);\n  top: 300px;\n  opacity: 0;\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.modal.zoom.in .modal-dialog {\n  -webkit-transform: scale(1);\n  transform: scale(1);\n  -webkit-transform: translate3d(0, -300px, 0);\n  transform: translate3d(0, -300px, 0);\n  opacity: 1;\n}\n.modal-content {\n  padding: 30px;\n}\n/* 独立的close按钮 */\nbutton.close {\n  position: relative;\n  right: 10px;\n  top: 5px;\n  z-index: 2;\n  outline: none;\n}\n", ""]);
 
 // exports
 
@@ -10740,7 +10740,7 @@ module.exports = function() {
 /* 13 */
 /***/ function(module, exports) {
 
-module.exports = "<div role=\"dialog\"\n        :class=\"{\n            'vc-modal-component': true,\n            'modal': true,\n            'fade': effect === 'fade',\n            'zoom': effect === 'zoom'\n        }\"\n    >\n        <div v-el:modal :class=\"{ 'modal-dialog': true, 'modal-lg': large, 'modal-sm': small }\" \n            :style=\"{ 'width': optionalWidth, 'top': optionalTop }\"\n            role=\"document\"\n        >\n            <button type=\"button\" class=\"close\" v-show=\"showCloseBtn\" @click=\"onClose\"><span>&times;</span></button>\n            <slot>\n            <div v-el:content class=\"modal-content\">\n                <slot name=\"modal-header\" v-if=\"showHeader\">\n                    <div class=\"modal-header\">\n                        <h4 class=\"modal-title\" > \n                            <div name=\"ttle\">\n                                {{title}}\n                            </div>\n                        </h4>\n                    </div>\n                </slot>\n                <slot name=\"modal-body\">\n                    <div class=\"modal-body\"></div>\n                </slot>\n                <slot name=\"modal-footer\" v-if=\"showFooter\">\n                    <div class=\"modal-footer\">\n                        <button type=\"button\" class=\"btn btn-primary\" @click=\"onOk\">{{ okText }}</button>\n                        <button type=\"button\" class=\"btn btn-default\" @click=\"onClose\">{{ cancelText }}</button>\n                    </div>\n                </slot>\n            </div>\n            </slot>\n        </div>\n    </div>";
+module.exports = "<div role=\"dialog\"\n        :class=\"{\n            'vc-modal-component': true,\n            'modal': true,\n            'fade': effect === 'fade',\n            'zoom': effect === 'zoom',\n            'no-backdrop': !backdrop\n        }\"\n    >\n        <div v-el:modal :class=\"{ 'modal-dialog': true, 'modal-lg': large, 'modal-sm': small }\" \n            :style=\"{ 'width': optionalWidth, 'top': optionalTop }\"\n            role=\"document\"\n        >\n            <button type=\"button\" class=\"close\" v-if=\"showCloseBtn\" @click=\"onClose\">\n                <span>&times;</span>\n            </button>\n            <div v-el:content class=\"modal-content\">\n                <slot name=\"modal-header\" v-if=\"showHeader\">\n                    <div class=\"modal-header\">\n                        <h4 class=\"modal-title\"> \n                            <div name=\"title\">\n                                {{ title }}\n                            </div>\n                        </h4>\n                    </div>\n                </slot>\n                <slot name=\"modal-body\">\n                    <div class=\"modal-body\"></div>\n                </slot>\n                <slot name=\"modal-footer\" v-if=\"showFooter\">\n                    <div class=\"modal-footer\">\n                        <button type=\"button\" class=\"btn btn-primary\" @click=\"handleOkClick\">{{ okText }}</button>\n                        <button type=\"button\" class=\"btn btn-default\" @click=\"onClose\">{{ cancelText }}</button>\n                    </div>\n                </slot>\n            </div>\n        </div>\n    </div>";
 
 /***/ },
 /* 14 */
@@ -11017,21 +11017,23 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //             'vc-modal-component': true,
 //             'modal': true,
 //             'fade': effect === 'fade',
-//             'zoom': effect === 'zoom'
+//             'zoom': effect === 'zoom',
+//             'no-backdrop': !backdrop
 //         }"
 //     >
 //         <div v-el:modal :class="{ 'modal-dialog': true, 'modal-lg': large, 'modal-sm': small }" 
 //             :style="{ 'width': optionalWidth, 'top': optionalTop }"
 //             role="document"
 //         >
-//             <button type="button" class="close" v-show="showCloseBtn" @click="onClose"><span>&times;</span></button>
-//             <slot>
+//             <button type="button" class="close" v-if="showCloseBtn" @click="onClose">
+//                 <span>&times;</span>
+//             </button>
 //             <div v-el:content class="modal-content">
 //                 <slot name="modal-header" v-if="showHeader">
 //                     <div class="modal-header">
-//                         <h4 class="modal-title" > 
-//                             <div name="ttle">
-//                                 {{title}}
+//                         <h4 class="modal-title"> 
+//                             <div name="title">
+//                                 {{ title }}
 //                             </div>
 //                         </h4>
 //                     </div>
@@ -11041,12 +11043,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //                 </slot>
 //                 <slot name="modal-footer" v-if="showFooter">
 //                     <div class="modal-footer">
-//                         <button type="button" class="btn btn-primary" @click="onOk">{{ okText }}</button>
+//                         <button type="button" class="btn btn-primary" @click="handleOkClick">{{ okText }}</button>
 //                         <button type="button" class="btn btn-default" @click="onClose">{{ cancelText }}</button>
 //                     </div>
 //                 </slot>
 //             </div>
-//             </slot>
 //         </div>
 //     </div>
 // </template>
@@ -11059,6 +11060,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //     transition: all 0.3s ease;
 //     text-align: center;
 //     display: none; /* 初始化之前隐藏 */
+
+//     &.no-backdrop {
+//         background-color: inherit!important;
+//     }
 // }
 // .modal-dialog {
 //     margin: 30px auto;
@@ -11230,6 +11235,8 @@ exports.default = {
             if (this.top == null || this.top === '') {
                 this.$els.modal.style.margin = '30px auto';
                 return null;
+            } else {
+                this.$els.modal.style.margin = '0 auto';
             }
             // top不为空的时候要清除margin，来真正利用top定位
             this.$els.modal.style.margin = '0 auto';
@@ -11314,9 +11321,12 @@ exports.default = {
             body.classList.remove('modal-open');
             body.style.paddingRight = '0';
         },
-        onClose: function onClose() {
+        handleOkClick: function handleOkClick() {
             this.show = false;
             this.onOk && this.onOk();
+        },
+        onClose: function onClose() {
+            this.show = false;
         }
     },
     beforeDestroy: function beforeDestroy() {

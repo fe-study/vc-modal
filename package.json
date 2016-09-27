@@ -1,7 +1,7 @@
 {
   "author": "indexxuan@gmail.com",
   "name": "vc-modal",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "bootstrap modal component based on vue.js",
   "scripts": {
     "start": "webpack-dev-server --inline --hot --quiet",

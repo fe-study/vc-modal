@@ -48,16 +48,32 @@
             :on-ok="onOk"
             :on-cancel="onCancel"
         >
-            <!--<div class="modal-header" slot="modal-header">-->
-            <!--    content of header -->
-            <!--</div>-->
-            <div class="modal-body" slot="modal-body">
+            <div slot="modal-header" class="modal-header">
+                content of header 
+            </div>
+            <div slot="modal-body" class="modal-body">
                 content
             </div>
-            <!--<div class="modal-footer" slot="modal-footer">-->
-            <!--    content of footer -->
-            <!--</div>-->
+            <div slot="modal-footer" class="modal-footer">
+                content of footer 
+            </div>
         </vc-modal>
+
+        <!--
+        <vc-modal
+            :show.sync="show"
+        >
+            <div slot="modal-header" class="modal-header">
+                header
+            </div>
+            <div slot="modal-body" class="modal-body">
+                content
+            </div>
+            <div slot="modal-footer" class="modal-footer">
+                footer
+            </div>
+        </vc-modal>
+        -->
 
         <button class="btn btn-primary" @click="showLargeModal">show large modal</button>
         <button class="btn btn-danger" @click="showSmallModal">show small modal</button>

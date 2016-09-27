@@ -1,6 +1,16 @@
 <h1 align="center">vc-modal - @changelog</h1>
 
-## 0.2.0
+## 0.3.0
+
+`2016-09-27`
+
+- 去除 `center` 模式下的padding，使得模态框不至于在距离顶部20px就消失，闪出...
+
+- 去除了modal-content同级的默认slot,会导致插入具名slot有问题，忍痛抛弃...
+  - 这样做一些效果就可能需要手动将.modal-content的padding置为0
+  - 记得将类似slot="modal-body"的class也设置为modal-body，来获得padding，当然也可以自定义，目前就是slot完全包裹容器替换
+
+## 0.2.1
 
 `2016-09-24`
 
@@ -11,6 +21,8 @@
 
 - `center` 优先级大于 `top`，一旦设置`center: true`, 则清空 `top`
   - 动态计算top值实现
+
+- 实现 `backdrop` 属性，无遮罩效果，自然也无法点击空白消失
 
 ## 0.1.1
 

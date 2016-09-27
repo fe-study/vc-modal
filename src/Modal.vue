@@ -4,21 +4,23 @@
             'vc-modal-component': true,
             'modal': true,
             'fade': effect === 'fade',
-            'zoom': effect === 'zoom'
+            'zoom': effect === 'zoom',
+            'no-backdrop': !backdrop
         }"
     >
         <div v-el:modal :class="{ 'modal-dialog': true, 'modal-lg': large, 'modal-sm': small }" 
             :style="{ 'width': optionalWidth, 'top': optionalTop }"
             role="document"
         >
-            <button type="button" class="close" v-show="showCloseBtn" @click="onClose"><span>&times;</span></button>
-            <slot>
+            <button type="button" class="close" v-if="showCloseBtn" @click="onClose">
+                <span>&times;</span>
+            </button>
             <div v-el:content class="modal-content">
                 <slot name="modal-header" v-if="showHeader">
                     <div class="modal-header">
-                        <h4 class="modal-title" > 
-                            <div name="ttle">
-                                {{title}}
+                        <h4 class="modal-title"> 
+                            <div name="title">
+                                {{ title }}
                             </div>
                         </h4>
                     </div>
@@ -28,12 +30,11 @@
                 </slot>
                 <slot name="modal-footer" v-if="showFooter">
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" @click="onOk">{{ okText }}</button>
+                        <button type="button" class="btn btn-primary" @click="handleOkClick">{{ okText }}</button>
                         <button type="button" class="btn btn-default" @click="onClose">{{ cancelText }}</button>
                     </div>
                 </slot>
             </div>
-            </slot>
         </div>
     </div>
 </template>
@@ -46,6 +47,10 @@
     transition: all 0.3s ease;
     text-align: center;
     display: none; /* 初始化之前隐藏 */
+
+    &.no-backdrop {
+        background-color: inherit!important;
+    }
 }
 .modal-dialog {
     margin: 30px auto;
@@ -214,6 +219,8 @@ export default {
             if (this.top == null || this.top === '') {
                 this.$els.modal.style.margin = '30px auto'
                 return null
+            } else {
+                this.$els.modal.style.margin = '0 auto'
             }
             // top不为空的时候要清除margin，来真正利用top定位
             this.$els.modal.style.margin = '0 auto'
@@ -298,9 +305,12 @@ export default {
             body.classList.remove('modal-open')
             body.style.paddingRight = '0'
         },
+        handleOkClick () {
+            this.show = false
+            this.onOk && this.onOk()
+        },
         onClose () {
             this.show = false;
-            this.onOk && this.onOk()
         }
     },
     beforeDestroy () {
