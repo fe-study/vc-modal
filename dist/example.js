@@ -11330,6 +11330,7 @@ exports.default = {
         }
     },
     beforeDestroy: function beforeDestroy() {
+        var el = this.$el;
         if (el.classList.contains('in')) {
             el.classList.remove('in');
             el.addEventListener('transitionend', this.transitionEndHandler, false);
