@@ -432,7 +432,7 @@ exports = module.exports = __webpack_require__(10)();
 
 
 // module
-exports.push([module.i, ".modal {\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  text-align: center;\n  display: none;\n  /* 初始化之前隐藏 */\n}\n.modal.no-backdrop {\n  background-color: inherit!important;\n}\n.modal-dialog {\n  margin: 30px auto;\n}\n.modal-footer {\n  text-align: center;\n  /* override bootstrap */\n}\n.modal.in {\n  background-color: rgba(0, 0, 0, 0.5);\n}\n.modal.zoom .modal-dialog {\n  -webkit-transform: scale(0.1);\n  transform: scale(0.1);\n  top: 300px;\n  opacity: 0;\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.modal.zoom.in .modal-dialog {\n  -webkit-transform: scale(1);\n  transform: scale(1);\n  -webkit-transform: translate3d(0, -300px, 0);\n  transform: translate3d(0, -300px, 0);\n  opacity: 1;\n}\n.modal-content {\n  padding: 30px;\n}\n/* 独立的close按钮 */\nbutton.close {\n  position: relative;\n  right: 10px;\n  top: 5px;\n  z-index: 2;\n  outline: none;\n}\n", ""]);
+exports.push([module.i, ".modal {\n  -webkit-transition: all 0.3s ease;\n  transition: all 0.3s ease;\n  text-align: center;\n  display: none;\n  /* 初始化之前隐藏 */\n}\n.modal.no-backdrop {\n  background-color: inherit!important;\n}\n.modal-dialog {\n  margin: 30px auto;\n}\n.modal-footer {\n  text-align: center;\n  /* override bootstrap */\n}\n.modal.in {\n  background-color: rgba(0, 0, 0, 0.5);\n}\n.modal.zoom .modal-dialog {\n  -webkit-transform: scale(0.1);\n  transform: scale(0.1);\n  top: 300px;\n  opacity: 0;\n  -webkit-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.modal.zoom.in .modal-dialog {\n  -webkit-transform: scale(1);\n  transform: scale(1);\n  -webkit-transform: translate3d(0, -300px, 0);\n  transform: translate3d(0, -300px, 0);\n  opacity: 1;\n}\n.modal.zoom.in .modal-dialog.modal-center {\n  -webkit-transform: translate3d(0, 0, 0);\n  transform: translate3d(0, 0, 0);\n}\n.modal-content {\n  padding: 30px;\n}\n/* 独立的close按钮 */\nbutton.close {\n  position: relative;\n  right: 10px;\n  top: 5px;\n  z-index: 2;\n  outline: none;\n}\n", ""]);
 
 // exports
 
@@ -497,7 +497,7 @@ module.exports = function() {
 /* 11 */
 /***/ function(module, exports) {
 
-module.exports = "<div role=\"dialog\"\n        :class=\"{\n            'vc-modal-component': true,\n            'modal': true,\n            'fade': effect === 'fade',\n            'zoom': effect === 'zoom',\n            'no-backdrop': !backdrop\n        }\"\n    >\n        <div v-el:modal :class=\"{ 'modal-dialog': true, 'modal-lg': large, 'modal-sm': small }\" \n            :style=\"{ 'width': optionalWidth, 'top': optionalTop }\"\n            role=\"document\"\n        >\n            <button type=\"button\" class=\"close\" v-if=\"showCloseBtn\" @click=\"onClose\">\n                <span>&times;</span>\n            </button>\n            <div v-el:content class=\"modal-content\">\n                <slot name=\"modal-header\" v-if=\"showHeader\">\n                    <div class=\"modal-header\">\n                        <h4 class=\"modal-title\"> \n                            <div name=\"title\">\n                                {{ title }}\n                            </div>\n                        </h4>\n                    </div>\n                </slot>\n                <slot name=\"modal-body\">\n                    <div class=\"modal-body\"></div>\n                </slot>\n                <slot name=\"modal-footer\" v-if=\"showFooter\">\n                    <div class=\"modal-footer\">\n                        <button type=\"button\" class=\"btn btn-primary\" @click=\"handleOkClick\">{{ okText }}</button>\n                        <button type=\"button\" class=\"btn btn-default\" @click=\"onClose\">{{ cancelText }}</button>\n                    </div>\n                </slot>\n            </div>\n        </div>\n    </div>";
+module.exports = "<div role=\"dialog\"\n        :class=\"{\n            'vc-modal-component': true,\n            'modal': true,\n            'fade': effect === 'fade',\n            'zoom': effect === 'zoom',\n            'no-backdrop': !backdrop\n        }\"\n    >\n        <div v-el:modal :class=\"{ 'modal-dialog': true, 'modal-center': cCenter, 'modal-lg': large, 'modal-sm': small }\" \n            :style=\"{ 'width': optionalWidth, 'top': optionalTop }\"\n            role=\"document\"\n        >\n            <button type=\"button\" class=\"close\" v-if=\"showCloseBtn\" @click=\"onClose\">\n                <span>&times;</span>\n            </button>\n            <div v-el:content class=\"modal-content\">\n                <slot name=\"modal-header\" v-if=\"showHeader\">\n                    <div class=\"modal-header\">\n                        <h4 class=\"modal-title\"> \n                            <div name=\"title\">\n                                {{ title }}\n                            </div>\n                        </h4>\n                    </div>\n                </slot>\n                <slot name=\"modal-body\">\n                    <div class=\"modal-body\"></div>\n                </slot>\n                <slot name=\"modal-footer\" v-if=\"showFooter\">\n                    <div class=\"modal-footer\">\n                        <button type=\"button\" class=\"btn btn-primary\" @click=\"handleOkClick\">{{ okText }}</button>\n                        <button type=\"button\" class=\"btn btn-default\" @click=\"onClose\">{{ cancelText }}</button>\n                    </div>\n                </slot>\n            </div>\n        </div>\n    </div>";
 
 /***/ },
 /* 12 */
@@ -753,7 +753,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //             'no-backdrop': !backdrop
 //         }"
 //     >
-//         <div v-el:modal :class="{ 'modal-dialog': true, 'modal-lg': large, 'modal-sm': small }" 
+//         <div v-el:modal :class="{ 'modal-dialog': true, 'modal-center': cCenter, 'modal-lg': large, 'modal-sm': small }" 
 //             :style="{ 'width': optionalWidth, 'top': optionalTop }"
 //             role="document"
 //         >
@@ -825,6 +825,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //     -webkit-transform: translate3d(0, -300px, 0);
 //     transform: translate3d(0, -300px, 0);
 //     opacity: 1;
+// }
+// .modal.zoom.in .modal-dialog.modal-center {
+//     -webkit-transform: translate3d(0, 0, 0);
+//     transform: translate3d(0, 0, 0);
 // }
 
 // .modal-content {

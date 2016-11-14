@@ -1,5 +1,11 @@
 <h1 align="center">vc-modal - @changelog</h1>
 
+## 0.4.0
+
+`2016-11-14`
+
+- 修复 `zoom` 模式下垂直居中问题(增加了 `modal-center` class的标识)
+
 ## 0.3.0
 
 `2016-09-27`

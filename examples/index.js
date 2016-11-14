@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import vcModal from '../src'
+import vcModal from '../src/Modal.vue'
 
 new Vue({
 	el: '#app',

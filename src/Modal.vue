@@ -8,7 +8,7 @@
             'no-backdrop': !backdrop
         }"
     >
-        <div v-el:modal :class="{ 'modal-dialog': true, 'modal-lg': large, 'modal-sm': small }" 
+        <div v-el:modal :class="{ 'modal-dialog': true, 'modal-center': cCenter, 'modal-lg': large, 'modal-sm': small }" 
             :style="{ 'width': optionalWidth, 'top': optionalTop }"
             role="document"
         >
@@ -80,6 +80,10 @@
     -webkit-transform: translate3d(0, -300px, 0);
     transform: translate3d(0, -300px, 0);
     opacity: 1;
+}
+.modal.zoom.in .modal-dialog.modal-center {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
 }
 
 .modal-content {
